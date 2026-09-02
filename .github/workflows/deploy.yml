@@ -4,6 +4,8 @@ on:     # 실행조건 정의
   push:    # push 이벤트 발생시 실행
     branches:   
       - main   # main 브랜치에 push 될 때만 실행     
+  # paths:
+  # -'v3/**'
 
 jobs:       # 실행할 job 정의
   backend:     # 백엔드 배포 job
@@ -64,8 +66,6 @@ jobs:       # 실행할 job 정의
           echo "KAKAO_CLIENT_ID=${{ secrets.KAKAO_CLIENT_ID }}" >> back/.env
           echo "NAVER_CLIENT_ID=${{ secrets.NAVER_CLIENT_ID }}" >> back/.env
           echo "NAVER_CLIENT_SECRET=${{ secrets.NAVER_CLIENT_SECRET }}" >> back/.env
-          echo "GMAIL_USERNAME=${{ secrets.GMAIL_USERNAME }}" >> back/.env
-          echo "GMAIL_PASSWORD=${{ secrets.GMAIL_PASSWORD }}" >> back/.env
 
       - name: Ensure app directory exists on EC2
         uses: appleboy/ssh-action@v0.1.7                 #   EC2 접속후 디렉토리 생성

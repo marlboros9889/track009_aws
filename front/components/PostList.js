@@ -3,6 +3,10 @@ import React from 'react';
 import { Card, Button, Popconfirm, Image, Carousel } from 'antd';
 import  Link                        from 'next/link';
 
+//## 환경변수 또는 도메인 주소설정
+const API_BASE_URL = production.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080";
+
+
 export default function PostList({ posts = [], handleEdit, handleDelete }) {
 
   return (
@@ -35,7 +39,7 @@ export default function PostList({ posts = [], handleEdit, handleDelete }) {
                   <div  key={idx}  style={{ textAlign: "center", background: "#f0f2f5" }}>
                     <Image
                       // 이미지 소스 URL 설정  
-                      src={`http://localhost:8080/${v}`}
+                      src={`${API_BASE_URL}/${v}`}
                       alt={`post  image ${idx}`}
                       // 스타일 조정 (카드 너비에 맞춤)
                       style={{ maxWidth: "100%", height: "300px", objectFit: "cover", borderRadius: "8px" }}

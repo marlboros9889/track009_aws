@@ -5,6 +5,10 @@ import { useDispatch } from "react-redux";
 import { loginSuccess } from "../../reducers/authReducer";
 import axios from "axios";
 // String targetUrl = redirectUrl + "?accessToken=" + access;   // 쿼리스트링
+
+//## 환경변수 또는 도메인 주소설정
+const API_BASE_URL = production.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080";
+
 //2. 부품 + export
 export default function OAuth2CallbackPapge(){
     const router   = useRouter();  // 경로이동
@@ -26,7 +30,7 @@ export default function OAuth2CallbackPapge(){
 
     const fetchUser = async( accessToken)=>{ 
         try{
-            const res = await axios.get("http://localhost:8080/auth/me", {
+            const res = await axios.get(`${API_BASE_URL}/auth/me`, {
                 headers: { Authorization: `Bearer ${accessToken}` },
                 withCredentials: true,  //쿠키전송용
             });

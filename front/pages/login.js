@@ -5,6 +5,8 @@ import { Row, Col, Form, Input, Button, Spin, message } from "antd";
 import { useRouter } from "next/router";   //3. 경로
 import { loginRequest } from "../reducers/authReducer";
 
+//## 환경변수 또는 도메인 주소설정
+const API_BASE_URL = production.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080";
 
 //2+3. 부품+export
 export default function LoginPage() {  
@@ -31,7 +33,7 @@ export default function LoginPage() {
     } , [user , router]);
 
     const handleSocialLogin=(provider)=>{ 
-        window.location.href = `http://localhost:8080/oauth2/authorization/${provider}`;
+        window.location.href = `${API_BASE_URL}/oauth2/authorization/${provider}`;
     }; 
 
     //////////////////////////////////////////////

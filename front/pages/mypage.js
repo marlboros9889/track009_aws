@@ -14,6 +14,10 @@ import { loadUserRequest } from "../reducers/authReducer";
 import { wrapper } from "../store/configureStore";
 
 
+//## 환경변수 또는 도메인 주소설정
+const API_BASE_URL = production.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080";
+
+
 export default function MyPage(){//2. 부품 + export
     const dispatch = useDispatch();
     const router = useRouter();
@@ -40,7 +44,7 @@ export default function MyPage(){//2. 부품 + export
         <div  style={{ maxWidth: 600 , margin: "40px auto"}}>
             <Card title="마이페이지 (회원 정보)">
                 <div  style={{ display:"flex"  , alignItems:"center" ,  gap:"20px"  }} >
-                    <Avatar src={`http://localhost:8080/${user.ufile}`} size={64}>{user.nickname?.[0]}</Avatar>
+                    <Avatar src={`${API_BASE_URL}/${user.ufile}`} size={64}>{user.nickname?.[0]}</Avatar>
                     <Descriptions title="User Info"  bordered column={1}>
                         <Descriptions.Item label="회원 번호">{user.id}</Descriptions.Item>
                         <Descriptions.Item label="이메일">{user.email}</Descriptions.Item>
